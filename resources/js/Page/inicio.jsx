@@ -157,8 +157,11 @@ export const Registro = () => {
         guar["password"] = pswd
         if (!error) {
             const response = await axios.post('https://redes/api/usuario', guar);
-            let res = await axios.get("https://redes/seguridad")
-            console.log(res);
+            let guar2={
+                correo:emai
+            }
+            axios.post("https://redes/seguridad",guar2)
+            
             //example.setDatos(guar)
             //window.location.href = "http://127.0.0.1:8000/registro/comprovar";  
         }

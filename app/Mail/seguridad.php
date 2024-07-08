@@ -11,6 +11,7 @@ use Illuminate\Queue\SerializesModels;
 
 class seguridad extends Mailable
 {
+    private $video;
     use Queueable, SerializesModels;
 
     /**
@@ -18,9 +19,10 @@ class seguridad extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($video)
     {
-        //
+        
+        $this->video =$video;
     }
 
     /**
@@ -28,6 +30,11 @@ class seguridad extends Mailable
      *
      * @return \Illuminate\Mail\Mailables\Envelope
      */
+    public function build()
+    {
+        $vid = $this->video;
+        return $this->view('email.seguridad', compact('vid'))->subject('Seguridad');
+    }
     public function envelope()
     {
         return new Envelope(

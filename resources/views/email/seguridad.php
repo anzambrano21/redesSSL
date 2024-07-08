@@ -1,9 +1,5 @@
 <?php 
-use App\Models\usuario;
-
-$user = usuario::latest('updated_at')->first();
-$correo=$user["correo"];
-$url = url("https://redes/api/Validar/$correo");
+$url = url("https://redes/api/Validar/$vid");
 ?>
 
 

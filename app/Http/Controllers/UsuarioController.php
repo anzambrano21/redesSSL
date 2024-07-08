@@ -25,7 +25,9 @@ class UsuarioController extends Controller
 
 
         usuario::Create([
-            "nombre"=>$request["nom"],
+            "nombreUser"=>$request["nom"],
+            "nombre"=> 'null',
+            "apellido"=> 'null',
             "correo"=>$request["email"],
             "rol"=>"visitante",
             "contraseña"=>bcrypt($request["password"]),
@@ -37,9 +39,9 @@ class UsuarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(usuario $usuario)
+    public function show($usuario)
     {
-        //
+        return usuario::where("correo",$usuario)->first();
     }
     public function log(Request $request)
     {
@@ -66,6 +68,19 @@ class UsuarioController extends Controller
             $user=Usuario::find( $usuario);
             $user["rol"]=$request->rol;
             $user->save();
+        }elseif ($request->hasAny(['nombre'])) {
+            $user=Usuario::where('correo', $usuario)->first();
+            $user->nombreUser=$request["nombreUse"];
+            $user->nombre=$request["nombre"];
+            $user->apellido=$request["apellido"];
+            
+            $user->correo=$request["Email"];
+            
+            if(Hash::check($request["ConA"],$user["contraseña"])){
+                $user->contraseña=Hash::make($request["ConN"]);
+            }
+            $user->save();
+            return 'Actualizado';
         }else{
             $user=Usuario::where('correo', $usuario)->first();
             $user["verificador"]=1;
@@ -91,8 +106,13 @@ class UsuarioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(usuario $usuario)
+    public function destroy($usuario)
     {
-        //
+        $usr= usuario::find($usuario);
+        if ($usr) {
+            $usr->delete();
+            // Registro eliminado exitosamente.
+        }
+        
     }
 }

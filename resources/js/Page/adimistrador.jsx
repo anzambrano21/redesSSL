@@ -7,6 +7,7 @@ import { Exaplecontect } from "../context/contexto"
 import { Navigate } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 const itemsPerPage = 5;
 let res = await fetch('https://redes/api/usuario');
 let myData = await res.json();
@@ -35,7 +36,7 @@ export const Adimistrador = () => {
   const example = useContext(Exaplecontect)
   const [shownav, setshownav] = useState(false)
   if (example["datos"]["rol"] !== "admin") {
-    return (<Navigate to="/home" />);
+    return (<Navigate to="/" />);
   }
 
   return (
@@ -47,8 +48,8 @@ export const Adimistrador = () => {
         <nav className="bg-purple-700 text-yellow-400 shadow-md p-4 flex justify-between items-center borderInfer navar">
           <i className=" font-bold" onClick={() => setshownav(!shownav)}>=</i>
           <div className="space-x-4">
-            <a href="/home" className="hover:underline">Inicio</a>
-            <a href="/user" className="hover:underline">Usuario</a>
+            <a href="/" className="hover:underline">Inicio</a>
+            <a href="/edit" className="hover:underline">Usuario</a>
           </div>
         </nav>
         <DesBar show={shownav} />
@@ -100,6 +101,10 @@ export const CutomTable = ({ show }) => {
     axios.put(`https://redes/api/usuario/${id}`, usur)
     console.log(`Valor seleccionado: ${selectedValue}`);
 }
+  const Eliminar=(id)=>{
+    console.log(id);
+    axios.delete(`https://redes/api/usuario/${id}`)
+  }
   // Función para filtrar los datos según el término de búsqueda
   return (
     <div >
@@ -126,7 +131,7 @@ export const CutomTable = ({ show }) => {
 
                 <td >{item.nombre}</td>
                 <td >{item.correo}</td>
-                <td><button className="btn btn-warning" onClick={() => dataedit = item} >Editar</button></td>
+                <td><button className="btn btn-danger" onClick={() =>Eliminar(item.id)} >Eliminar</button></td>
                 <td>
 
                   <select id={item.id} onChange={handleSelectChange}>

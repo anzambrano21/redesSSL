@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use App\Models\usuario;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,17 +20,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/redes2FA/public/', function () {
+Route::get('public/', function () {
     return view('welcome');
 });
 Route::get('/registro/comprovar', function () {
     return view('welcome');
 });
-Route::get('/seguridad', function () {
-    $user = usuario::latest('updated_at')->first();
+Route::post('/seguridad', function (Request $request) {
     
-    Mail::to($user["correo"])->send(new App\Mail\seguridad);
-    return "mensaje enviado";
+    
+    Mail::to($request["correo"])->send(new App\Mail\seguridad($request["correo"]));
+    
 })->name('seguridad');
 Route::get("/admin",function () {
     
