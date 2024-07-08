@@ -1,0 +1,40 @@
+.containe {
+    position: absolute;
+   
+    width: 60%;
+    top: 10%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 5%;
+    -webkit-box-shadow: -22px 22px 28px -30px rgba(0,0,0,1);
+    -moz-box-shadow: -22px 22px 28px -30px rgba(0,0,0,1);
+    box-shadow: -22px 22px 28px -30px rgba(0,0,0,1);
+}
+.ubicacion,.nombreap {
+
+    margin: 5%;
+}
+.img-redonda {
+    width: 100px; /* Ancho de la imagen */
+    height: 100px; /* Alto de la imagen */
+    border-radius: 50%; /* Esto hace que la imagen sea redonda */
+    object-fit: cover; /* Esto hace que la imagen cubra todo el espacio disponible, manteniendo su aspecto */
+}
+  /* Media query para pantallas de tamaño grande (desktop, etc.) */
+  @media screen and (max-height: 1075px) {
+    .containe {
+      height: 50%;
+      /* otros estilos... */
+    }
+}
+@media screen and (max-height: 800px) {
+    .containe {
+      height: 80%;
+      /* otros estilos... */
+    }
+}
+
+  
+
