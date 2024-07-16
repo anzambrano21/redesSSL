@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}   
+
+.container{
+    display: flex;
+    flex-direction: column;
+    gap:30px;
+    margin-bottom: 30px;
+
+}
+
+.tittle{
+    text-align: center;
+    font-size:xx-large;
+    font: bold;
+    
+}
+
+.text{
+    font-size: x-large;
+}
+.button{
+    background-color: blue ;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: large;
+    color: white;
+}
+.container_button{
+    display: flex;
+    width: auto;
+    height: auto;
+    justify-content: start;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}

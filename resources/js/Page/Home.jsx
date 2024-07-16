@@ -5,6 +5,7 @@ import ExamplecontexProvier, {Exaplecontect}from "../context/contexto"
 import {Adimistrador} from "./adimistrador";
 import { Concepto } from './conceptos';
 import {Cambiardat} from './usuario.jsx';
+import "../../css/principal.css";
 export default function Prin() {
    console.log(1234);
     
